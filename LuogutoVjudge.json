@@ -1,8 +1,8 @@
 // ==UserScript==
 // @name         洛谷rmj一键跳转VJudge
 // @namespace    http://tampermonkey.net/
-// @version      3.0
-// @description  支持洛谷CF/SPOJ/AtCoder/UVA题目跳转VJudge，自动匹配各平台链接格式
+// @version      3.1
+// @description  支持洛谷CF/SPOJ/AtCoder/UVA题目跳转VJudge，修复CF带数字后缀的编号匹配
 // @author       Justskr
 // @match        https://www.luogu.com.cn/problem/CF*
 // @match        https://www.luogu.com.cn/problem/SP*
@@ -27,7 +27,8 @@
             return uvaMatch ? `https://vjudge.net/problem/UVA-${uvaMatch[1]}` : null;
         }
         else if (luoguPath.startsWith('/problem/CF')) {
-            const cfMatch = luoguPath.match(/CF(\d+[A-Za-z]?)/);
+            // 修复CF编号匹配
+            const cfMatch = luoguPath.match(/CF(\d+[A-Za-z\d]*)/);
             return cfMatch ? `https://vjudge.net/problem/CodeForces-${cfMatch[1]}` : null;
         }
         else if (luoguPath.startsWith('/problem/SP')) {
