@@ -81,3 +81,4 @@
         console.warn(`洛谷${platform}题目跳转VJudge：未找到有效题目标识符，请检查页面格式`);
     }
 })();
+
